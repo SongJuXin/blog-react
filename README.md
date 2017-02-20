@@ -1,4 +1,5 @@
 ﻿# blog-react
+## 在线地址：http://123.57.223.74:29323
 ## A blog web maded by react + express + MongoDB
 ## 先安装依赖包，执行
 ```
@@ -19,6 +20,8 @@ mongodb --dbpath=../data
 node app
 ```
 ## 打开浏览器，输入`localhost:29323`,即可预览
+
+
 
 
 
