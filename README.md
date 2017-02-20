@@ -10,11 +10,13 @@ npm install
 npm run build
 ```
 ## 打开mongodb数据库：在mongodb/bin下面，右键打开本地窗口，执行以下代码，启动数据库
-```mongodb --dbpath=../data
+```
+mongodb --dbpath=../data
 ```
 ## 启动服务器：在根目录，打开命令窗口，执行以下命令
 
-```node app
+```
+node app
 ```
 ## 打开浏览器，输入`localhost:29323`,即可预览
 
