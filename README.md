@@ -28,10 +28,10 @@ node app
 
 ### 2017.3.7更新
 
-1.优化后端接口，更靠近`restful`接口风格了
-2.解决上次的req.session找不到的问题，原因是当采用fetch传输数据，默认不会发送`cooke`，因此导致后台的`req.session`获取到的和用`ajax`获取到的`req.session`不一致
-3.所有ajax请求替换为fetch请求
-4.个别的form表单提交改为json数据提交
+1. 优化后端接口，更靠近`restful`接口风格了
+2. 解决上次的req.session找不到的问题，原因是当采用fetch传输数据，默认不会发送`cooke`，因此导致后台的`req.session`获取到的和用`ajax`获取到的`req.session`不一致
+3. 所有ajax请求替换为fetch请求
+4. 个别的form表单提交改为json数据提交
 #### 待要解决的问题
 - fetch上传文件
 - 管理员后台操作
