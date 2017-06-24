@@ -19,15 +19,7 @@ router.post('/',auth.checkLogin,function(req,res){
     comment.createAt=Date.now()
     comment.article=article
     Comment.create(comment,function (e,doc) {
-        Comment.find({article},function (e,docs) {
-            /*if(docs.length>0){
-                docs=docs.map((item)=>{
-                    getName(item.user,(name)=>{
-                        console.log(name)
-                        item.user=name
-                    })
-                })
-            }*/
+        Comment.find({article}).populate('user').exec(function (e,docs) {
             console.log(docs)
             res.send(docs)
         })
@@ -47,7 +39,8 @@ router.delete('/:id',function(req,res){
 //获取所有的留言
 router.get('/',function(req,res){
     var article=/\/(\w+)$/.exec(req.headers.referer)[1]
-    Comment.find({article},function (e,docs) {
+    Comment.find({article}).populate('user').exec(function (e,docs) {
+        console.log(docs)
         res.send(docs)
     })
 });

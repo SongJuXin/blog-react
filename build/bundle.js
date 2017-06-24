@@ -28044,6 +28044,8 @@ var _moment2 = _interopRequireDefault(_moment);
 
 var _reactDom = __webpack_require__(75);
 
+__webpack_require__(375);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -28074,7 +28076,8 @@ var CommentList = function (_Component) {
             return _react2.default.createElement(
                 'ul',
                 { className: 'list-group' },
-                this.props.comments.length > 0 ? this.props.comments.map(function (item, index) {
+                this.props.comments.map(function (item, index) {
+                    console.log(item, 'item');
                     return _react2.default.createElement(
                         'li',
                         { className: 'commentItem', key: index },
@@ -28084,7 +28087,7 @@ var CommentList = function (_Component) {
                             _react2.default.createElement(
                                 'a',
                                 { className: 'text-p', href: '###' },
-                                item.user
+                                item.user.username
                             ),
                             '\u8BF4\u9053:',
                             _this2.props.isSuper ? _react2.default.createElement(
@@ -28106,7 +28109,7 @@ var CommentList = function (_Component) {
                             (0, _moment2.default)(item.createAt).fromNow()
                         )
                     );
-                }) : null
+                })
             );
         }
     }]);
@@ -29175,7 +29178,7 @@ var ArticleDetail = function (_React$Component) {
                     )
                 );
             };
-            console.log(this.state.article);
+            var article = this.state.article;
             return _react2.default.createElement(
                 'div',
                 { className: 'col-md-7 col-md-offset-3 detail' },
@@ -29188,7 +29191,7 @@ var ArticleDetail = function (_React$Component) {
                         _react2.default.createElement(
                             'h1',
                             null,
-                            this.state.article.title
+                            article.title
                         ),
                         _react2.default.createElement(
                             'div',
@@ -29196,18 +29199,18 @@ var ArticleDetail = function (_React$Component) {
                             _react2.default.createElement(
                                 'span',
                                 { className: 'time' },
-                                this.state.article.createAt
+                                article.createAt
                             ),
                             _react2.default.createElement(
                                 'span',
                                 { className: 'badge pull-right' },
-                                this.state.article.times
+                                article.times
                             ),
                             _react2.default.createElement(
                                 _reactRouter.Link,
                                 { className: 'name pull-right' },
                                 '\u4F5C\u8005\uFF1A',
-                                this.state.article.user.username
+                                article.user.username
                             )
                         ),
                         this.state.article.originUrl ? _react2.default.createElement(
@@ -29216,13 +29219,13 @@ var ArticleDetail = function (_React$Component) {
                             '\u8F6C\u81EA',
                             _react2.default.createElement(
                                 'a',
-                                { href: this.state.article.originUrl },
+                                { href: article.originUrl },
                                 this.state.article.originUrl
                             )
                         ) : null
                     ),
-                    _react2.default.createElement('div', { className: 'panel-body ', id: 'mk', dangerouslySetInnerHTML: renderHtml(this.state.article.html) }),
-                    this.props.localUser && this.props.localUser._id == this.state.article.user || this.props.isSuper ? _react2.default.createElement(UserOption, null) : null,
+                    _react2.default.createElement('div', { className: 'panel-body ', id: 'mk', dangerouslySetInnerHTML: renderHtml(article.html) }),
+                    this.props.localUser && this.props.localUser._id == article.user || this.props.isSuper ? _react2.default.createElement(UserOption, null) : null,
                     _react2.default.createElement('div', { dangerouslySetInnerHTML: Script1 }),
                     _react2.default.createElement('div', { dangerouslySetInnerHTML: Script2 })
                 ),
@@ -47718,6 +47721,46 @@ var _Blog2 = _interopRequireDefault(_Blog);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 (0, _reactDom.render)(_react2.default.createElement(_Blog2.default, null), document.getElementById('app'));
+
+/***/ }),
+/* 374 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(246)();
+// imports
+
+
+// module
+exports.push([module.i, ".text-p{\r\n    padding: 0 5px;\r\n}", ""]);
+
+// exports
+
+
+/***/ }),
+/* 375 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(374);
+if(typeof content === 'string') content = [[module.i, content, '']];
+// add the styles to the DOM
+var update = __webpack_require__(371)(content, {});
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!./../../../../node_modules/css-loader/index.js!./style.css", function() {
+			var newContent = require("!!./../../../../node_modules/css-loader/index.js!./style.css");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
 
 /***/ })
 /******/ ]);

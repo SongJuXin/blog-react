@@ -64,23 +64,23 @@ export default class ArticleDetail extends React.Component{
                 <a onClick={()=>{this.del(this.state.article._id)}} className="btn btn-danger">删除</a>
             </div>
         )
-        console.log(this.state.article)
+        const article=this.state.article
         return(
             <div className="col-md-7 col-md-offset-3 detail">
                 <div className="panel panel-default" style={{border:'none',background:'white'}}>
                     <div className="panel-heading" style={{background:'white'}}>
                         <h1>
-                            {this.state.article.title}
+                            {article.title}
                         </h1>
                         <div className=" ">
-                            <span className="time">{this.state.article.createAt}</span>
-                            <span className="badge pull-right">{this.state.article.times}</span>
-                            <Link  className="name pull-right">作者：{this.state.article.user.username}</Link>
+                            <span className="time">{article.createAt}</span>
+                            <span className="badge pull-right">{article.times}</span>
+                            <Link  className="name pull-right">作者：{article.user.username}</Link>
                         </div>
-                        {this.state.article.originUrl?(<div>转自<a href={this.state.article.originUrl}>{this.state.article.originUrl}</a></div>):null}
+                        {this.state.article.originUrl?(<div>转自<a href={article.originUrl}>{this.state.article.originUrl}</a></div>):null}
                     </div>
-                    <div className="panel-body " id="mk" dangerouslySetInnerHTML={renderHtml(this.state.article.html)}></div>
-                    {(this.props.localUser&&this.props.localUser._id==this.state.article.user)||this.props.isSuper?<UserOption/>:null}
+                    <div className="panel-body " id="mk" dangerouslySetInnerHTML={renderHtml(article.html)}></div>
+                    {(this.props.localUser&&this.props.localUser._id==article.user)||this.props.isSuper?<UserOption/>:null}
                     <div dangerouslySetInnerHTML={Script1}/>
                     <div dangerouslySetInnerHTML={Script2}/>
                 </div>
