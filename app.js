@@ -8,6 +8,29 @@ var expressSession=require('express-session')//安装
 //解决服务器重启 数据丢失
 
 var MongoStore=require('connect-mongo')(expressSession)
+
+
+
+var webpack = require('webpack'),
+    webpackDevMiddleware = require('webpack-dev-middleware'),
+    webpackHotMiddleware = require('webpack-hot-middleware'),
+    webpackDevConfig = require('./webpack.config.js');
+
+var compiler = webpack(webpackDevConfig);
+
+// attach to the compiler & the server
+app.use(webpackDevMiddleware(compiler, {
+
+    // public path should be the same with webpack config
+    publicPath: webpackDevConfig.output.publicPath,
+    noInfo: true,
+    stats: {
+        colors: true
+    }
+}));
+app.use(webpackHotMiddleware(compiler));
+
+
 //静态文件根目录
 app.use(express.static(path.resolve('./build')));
 app.use(express.static(path.resolve('./public')));
@@ -50,12 +73,21 @@ var index=require('./routes/index')
 var about=require('./routes/about')
 var comment=require('./routes/comment')
 var session=require('./routes/session')
+var novel=require('./routes/novel')
 app.use('/',index)
 app.use('/users',user)
 app.use('/articles',article)
 app.use('/comments',comment)
 app.use('/about',about)
 app.use('/session',session)
+app.use('/novel',novel)
+app.use('/clearCookie',function (req,res) {
+  console.log('befor ',res.cookie())
+
+  res.clearCookie('a', {path: '/'});
+  console.log('end ',res.cookie())
+    res.send('clear cookie')
+})
 app.use(function (req,res) {
     res.sendFile(path.resolve('./build/index.html'))
 })

@@ -78,6 +78,10 @@ export default class ArticleAdd extends React.Component{
     render(){
         return (
             <div className="clearfix" style={{}}>
+                <ol className="breadcrumb">
+                    <li><a href="/" >首页</a></li>
+                    <li className="active">发表文章</li>
+                </ol>
                 <input type="text" className="col-md-12"  value={this.state.valueTitle}  onChange={this.handleChangeT.bind(this)} placeholder="请输入标题"/>
                         <textarea placeholder="在此键入。使用markdown，或html格式。"  className="col-md-6 edit-input"  value={this.state.valueContent} onChange={this.handleChangeC.bind(this)}></textarea>
                 <div style={{border:'1px solid gray'}} className="col-md-6 edit-view" dangerouslySetInnerHTML={{__html:this.state.html}}></div>

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Router, Route, browserHistory ,Link,IndexRoute } from 'react-router';
+import { Router, Route, browserHistory ,Link,IndexRoute ,IndexLink} from 'react-router';
 import local from '../store/local'
 import commentAjax from '../store/commentAjax'
 import articleAjax from '../store/articleAjax'
@@ -70,7 +70,7 @@ class Navs extends React.Component{
                         </div>
                         <div className="collapse navbar-collapse" id="top-nav">
                         <ul className="nav navbar-nav col-md-11 " >
-                            <li ><Link activeStyle={{background:"#e7e7e7"}} to="/">首页</Link></li>
+                            <li ><IndexLink  activeStyle={{background:"#e7e7e7"}} to="/">首页</IndexLink></li>
                             <li><Link activeStyle={{background:"#e7e7e7"}} to="/article/add">发表文章</Link></li>
                             <li className="navbar-right btn-group">
                                 <Link   activeStyle={{background:"#e7e7e7"}} className="dropdown-toggle col-md-12" data-toggle="dropdown" >
@@ -106,7 +106,7 @@ class Navs extends React.Component{
                         </div>
                         <div className="collapse navbar-collapse" id="top-nav">
                             <ul className="nav navbar-nav col-md-11 " >
-                                <li ><Link activeStyle={{background:"#e7e7e7"}}  to="/">首页</Link></li>
+                                <li ><IndexLink activeStyle={{background:"#e7e7e7"}}  to="/">首页</IndexLink></li>
                                 <li className="navbar-right" ><Link activeStyle={{background:"#e7e7e7"}}  to="/user/new">注册</Link></li>
                                 <li className="navbar-right"><Link activeStyle={{background:"#e7e7e7"}}  to="/session">登录</Link></li>
                             </ul>

@@ -5,6 +5,8 @@ var path=require('path')
 var getEastDay=require('./store/getEastday')
 
 router.get('/',function (req,res) {
+
+    console.log(1212)
     res.sendFile(path.resolve('./build/index.html'))
 })
  router.get('/localUser',function (req,res) {
@@ -18,4 +20,7 @@ router.get('/',function (req,res) {
          res.send(data)
      })
  })
+router.get('/novel',function (req,res) {
+    res.sendFile(path.resolve('./build/novel.html'))
+})
 module.exports=router

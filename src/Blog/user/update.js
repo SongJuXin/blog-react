@@ -48,6 +48,10 @@ export default class extends React.Component{
     render(){
         return (
             <div className="container">
+                <ol className="breadcrumb">
+                    <li><a href="/">首页</a></li>
+                    <li className="active">修改密码</li>
+                </ol>
                 <form role="form" className="form col-md-3" >
                     <div className="form-group has-feedback" >
                         <label htmlFor="oldPassword">旧密码</label>

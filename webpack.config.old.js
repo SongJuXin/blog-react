@@ -1,18 +1,26 @@
 var path=require('path')
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var OpenBrowserWebpackPlugin = require('open-browser-webpack-plugin');
+console.log(path.resolve('./test/build'),1111111111111)
+
 module.exports={
-    entry:'./test/app1.js',
-    output:{
-        path:path.resolve('./test/build'),
-        filename:'bundle.js'
+    entry:{
+        'index':'./src/index.js',
+        'novel':'./src/Novel/index.js'
     },
+    output:{
+        path:path.resolve('./build'),
+        filename:'[name].js'
+    },
+    //启用观察者模式，npm run build --watch或npm run webpack --watch，只要entey指定的入口文件有变化，就会自动编译
+    watch:true,
     devServer:{
         //指定静态文件根目录
         stats: { colors: true },
-        contentBase:'./test/build',
-        port:8888,
+        contentBase:'./build',
+        port:80,
         inline:true, //当源代码变化后自动重新打包并通知浏览器刷新
+        hot:true
     },
     module:{
         loaders:[
@@ -33,10 +41,19 @@ module.exports={
     },
     plugins:[
         //创建一个自动产出html的插件`
+        /*new HtmlWebpackPlugin({
+            //指定生成依据的模板
+            template:'./src/index.html'
+        }),*/
         new HtmlWebpackPlugin({
             //指定生成依据的模板
-            template:'./test/index1.html'
+            filename:'idnex.html',
+            template:'./src/index.html'
         }),
-        new OpenBrowserWebpackPlugin({url:'http://localhost:8888'})
+        new HtmlWebpackPlugin({
+            filename:'novel.html',
+            template:'./src/novel.html'
+        }),
+        new OpenBrowserWebpackPlugin({url:'http://localhost'})
         ]
 }

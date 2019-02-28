@@ -67,6 +67,10 @@ export default class ArticleDetail extends React.Component{
         const article=this.state.article
         return(
             <div className="col-md-7 col-md-offset-3 detail">
+                <ol className="breadcrumb">
+                    <li><a href="/">首页</a></li>
+                    <li>{article.title}</li>
+                </ol>
                 <div className="panel panel-default" style={{border:'none',background:'white'}}>
                     <div className="panel-heading" style={{background:'white'}}>
                         <h1>

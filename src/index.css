@@ -5,6 +5,7 @@
 .media-left img{
     width:60px;
     height:60px;
+    user-select: none
 }
 .dropdown-toggle img{
     width: 40px;
@@ -52,6 +53,7 @@ li {
     border-bottom: 1px solid #eef2f8 ;
 }
 /*detail页面*/
+
 .detail .name{
     margin-right: 10px;
 }

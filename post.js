@@ -1,0 +1,82 @@
+/**
+ * Created by songsong on 2018/2/26.
+ */
+const querystring = require('querystring')
+const http = require('http')
+const postData = querystring.stringify({
+    'msg': 'Hello World!'
+});
+var conv=require('iconv-lite')//转码的
+
+const options = {
+    hostname: 'pan.baidu.com',
+    port: 80,
+    path: '/api/list',
+    dir: '/?---------/11.??????100???????????',
+    bdstoken: 'fce9651078adcbf78fabdf613ae03f0c',
+    logid: 'MTUxOTYxMzg3NzgwNzAuNDI0NzA2MTA4OTg3NzM2NjQ',
+    num: 1,
+    order: 'time',
+    desc: 1,
+    clienttype: 0,
+    showempty: 0,
+    web: 1,
+    page: 1,
+    channel: 'chunlei',
+    app_id: 250528,
+    headers: {
+        "Content-Type": 'application/json',
+        'Host': 'pan.baidu.com',
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:58.0) Gecko/20100101 Firefox/58.0',
+        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+        'Accept-Language': 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+        'Accept-Encoding': 'gzip, deflate',
+        'Cookie': 'BAIDUID=1936CC07BEEB227A90D97932203779F8:FG=1; BIDUPSID=6A5AA4595D085EA0788E350E8701A37E; PSTM=1516592146; MCITY=-131%3A; PANWEB=1; Hm_lvt_7a3960b6f067eb0085b7f96ff5e660b0=1517485479,1517485510,1519287592,1519611222; BDCLND=UvBWCuF%2BNZyuQkuDhSZLVU7Ene%2B7wN%2FXhfDd%2Fwzv29o%3D; BDUSS=kdxSEFaMHBZQ0VsQUFrLWdyYWpxOGR3Y1F3fkJobk5EN2pDeHFrUmR2N1BiWkphQVFBQUFBJCQAAAAAAAAAAAEAAADl0GkNMTAxNjM0NjEwMwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAM~galrP4GpaV; Hm_lvt_f5f83a6d8b15775a02760dc5f490bc47=1517485569; H_PS_PSSID=1433_21101; BDORZ=FFFB88E999055A3F8A630C64834BD6D0; STOKEN=1f28a3f503e8d0fcb51c539f0a8277b5c3734d322dfb8d5f59bc06cd39047fe2; SCRC=c0567d4bff8b94d424652da19e27c170; Hm_lpvt_7a3960b6f067eb0085b7f96ff5e660b0=1519613879; PANPSC=7748569570910097592%3Acvzr9Jxhf5AQcAoK2n3iuyOAoXNFwReXmhMCPeXxni1w31Y5TKyF131zrFo7iguBMMKOMtLkW71hEDW5zu8kT%2FO%2Ff%2BNC5zyXfbZ%2FbYW506Yrh7mwRYuAFryHDAnhPhMzXW37a4TinLWdvC1fGld5PWiXloqNLondl2JAKi5bFXBKD4upVeJz16i5jlvC9%2Fe9XH3O19qoLX%2Bwcc33C7HckA%3D%3D; PSINO=1; BDRCVFR[eHt_ClL0b_s]=mk3SLVN4HKm; pgv_pvi=716562432; pgv_si=s382260224; BDRCVFR[feWj1Vr5u3D]=I67x6TjHwwYf0',
+        'Connection': 'keep-alive',
+        'Upgrade-Insecure-Requests': 1,
+        'Cache-Control': 'max-age=0',
+    }
+}
+const op1 = {
+    hostname: 'platform.b2b-v2-pre1.jcloudec.com',
+    port: 80,
+    path: '/proxy/authority-service/platform/resource/queryResourceMenuByPuserId',
+    headers: {
+        "Content-Type": 'application/json',
+        'Host': 'platform.b2b-v2-pre1.jcloudec.com',
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:58.0) Gecko/20100101 Firefox/58.0',
+        'Accept': '*/*',
+        'Accept-Language': 'zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2',
+        'Accept-Encoding': 'gzip, deflate',
+        'Cookie': 'areaId=11; areaName=%E5%8C%97%E4%BA%AC%E5%B8%82; _gtra=A749FA6D-3ADF-44FC-8AA4-580CD38D2316.1516622404501.11; log_uuid=CD99D27E-E897-46F0-930E-A08DAE141F2D; _gtrc=476b7311b5af40a4997c33794bd0d3c4; _ecc_b2b_=AFD3D768AE11C132AB89B7DA255017E8C4EBA50C343B4E51A243980F00FF89245331BE8BCD0AE6074EAAF3E1DEDC9B8FB33EC72B727C1AA517D6F79F632E11B54E4C58A7B5B0B14A3CA8FFE2C5C93134DC95C9B8633C07F42FB85ADEB56E98460F836E56962F3DAC3555D48777A1339E006937380BF1A1F06F2F656B6F14CB94385B3A0C9175C06B7D7A2C579FC823C6BB9418FD43904D1F0F6A170DFFBC553074C7AB692EA75C533929097D4106F92CC989AB8EF398283E8C0EC81FF1278C6F9733A809D29CC372A578275CB69A57D055C3DE533F73C5011414A586181C6881DA067B8D728F8216C658417663A1576DFB585D6C98E8315938E9596B8CB808FE419103AB7898232AE3908CA7B27A6336B465BF96F026CBFEBDF4D82847C98E4252AA6585A803F7CB7E8E22ABA6DBB6AACDF1A4C14C35DAC73A582BFC88E4E748BD4F51E0C6E03ECBA54FCAF3B51A3A6EAE65343253868068F0900C51D185976BF0B0A7211148C7FA0FF96E696FC6B8AA475304895C37B494099A88B941F1E237; companyId=201001996; connect.sid=s%3As9NiPxMJ59Gl5IZg3yQxRaxW3oU9fBDC.2ugrS2F%2FhYZpXVLONWc8CFTaSXkjIvSaSeg7TMfKx7M; _ecc_b2b_platform=EBD9D61D0710CFF72AD014C7699C45F860ECA2AFF4CFE30B13C107C6FCEDEF6C2130499D47643439D73B581D0AFB825FF7A7EC3137396530928B34626FFF35CF2121764EA8AC0E037D60D6D7139D77F2E06567E4697CE6C6F3B18BFB6959263DE10CD437942856ABCA8DD9A8B26A3682A5F7599417CA75165E4D4473C9D419CD809BA665D6171BC8E6ED3889B3814D7D5ED81C3619639B66AEF088AF16225A6A1F996D68367E4589132A745429077FC31AFA3B1D7367BE039464F6CF8BA8217B8C5642F7937CDFD66F73C28EBF13F94D4034A2057DA7219B7FFD2700C3194E5A2C0965B7FDA342208AC165615C5F96D6593668899F714880618E3FFF1B9577FB6D611ABB5280043D8BD9558233B5D3ABBEDC4C5033A5E7E70655AAB25DBE6A9CB8A7F9ED857513CD5B3358D0DA12117B4B066A1504E1BE1385A81ADE65F10FC1270E8F72BACE60B9525908D405EE34B28F0EAE8A4496A1ABFDB0E4D8F0646D3C2AF69FE31BD7486E3B12FCF1E82C21D5',
+        'Connection': 'keep-alive',
+        'Referer': 'http://platform.b2b-v2-pre1.jcloudec.com/operating-item-view/fictitious-category',
+    }
+
+}
+const req = http.request(options, (res) => {
+    console.log(121212)
+    console.log(`STATUS: ${res.statusCode}`);
+    console.log(`HEADERS: ${JSON.stringify(res.headers)}`);
+    res.setEncoding('utf8');
+
+    res.on('data', (chunk) => {
+        console.log('biody-----------')
+        console.log(`BODY: ${chunk}`);
+    });
+
+    res.on('end', () => {
+        console.log('No more data in response.');
+    });
+});
+
+req.on('error', (e) => {
+    console.error(`problem with request: ${e.message}`);
+});
+
+// write data to request body
+//req.write(postData);
+
+
+req.end();
+

@@ -20,6 +20,11 @@ export default class UserSignup extends React.Component{
     }
     render(){
         return (
+        <div>
+            <ol className="breadcrumb">
+                <li><a href="/">首页</a></li>
+                <li className="active">注册</li>
+            </ol>
             <form role="form" method="post" className="col-md-6 col-md-offset-3 " encType="multipart/form-data" action="/users">
                 <div className="form-group">
                     <label htmlFor="username">账号</label>
@@ -39,6 +44,8 @@ export default class UserSignup extends React.Component{
                 </div>
                 <button type="button" onClick={this.handleClick.bind(this)}  className="form-group btn btn-success col-md-12 btn-bs">Sign up</button>
             </form>
+        </div>
+
         )
     }
 }
